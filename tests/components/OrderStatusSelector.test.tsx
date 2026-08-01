@@ -2,14 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { it, expect, describe } from 'vitest';
 import OrderStatusSelector from '../../src/components/OrderStatusSelector';
 import { Theme } from '@radix-ui/themes';
-import ResizeObserver from 'resize-observer-polyfill';
 import userEvent from '@testing-library/user-event';
-
-globalThis.ResizeObserver = ResizeObserver;
-
-window.HTMLElement.prototype.hasPointerCapture = vi.fn();
-window.HTMLElement.prototype.releasePointerCapture = vi.fn();
-window.HTMLElement.prototype.scrollIntoView = vi.fn();
 
 describe('OrderStatusSelector', () => {
   const renderComponent = async () => {

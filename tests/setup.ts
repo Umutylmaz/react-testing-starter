@@ -1,4 +1,17 @@
 import '@testing-library/jest-dom/vitest';
+import ResizeObserver from 'resize-observer-polyfill';
+import { server } from "./mocks/server"
+
+// this setup file executed before each test file
+beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
+
+globalThis.ResizeObserver = ResizeObserver;
+
+window.HTMLElement.prototype.hasPointerCapture = vi.fn();
+window.HTMLElement.prototype.releasePointerCapture = vi.fn();
+window.HTMLElement.prototype.scrollIntoView = vi.fn();
 
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
